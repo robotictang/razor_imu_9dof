@@ -67,11 +67,12 @@ ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 roll=0
 pitch=0
 yaw=0
-ser.write('#ot' + chr(13)) # To start display angle in text 
+
+ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text 
 while 1:
     line = ser.readline()
-    line = line.replace("#YPR=","")   # Delete "#YPR="
-    # print line
+    line = line.replace("#YPRAMG=","")   # Delete "#YPR="
+    print line
     #f.write(line)                     # Write to the output log file
     words = string.split(line,",")    # Fields split
     if len(words) > 2:
