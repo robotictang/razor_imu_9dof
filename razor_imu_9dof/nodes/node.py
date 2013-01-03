@@ -79,17 +79,17 @@ while 1:
             yaw = float(words[0])*grad2rad
             pitch = -float(words[1])*grad2rad
             roll = -float(words[2])*grad2rad
-        except:
-            print "Invalid line"
-        # TODO: Add angular and acceleration to the message
-        # Publish message
-        #    imuMsg.angular_velocity.x = rawMsg.angular_velocity.x
-        #    imuMsg.angular_velocity.y = rawMsg.angular_velocity.y
-        #    imuMsg.angular_velocity.z = rawMsg.angular_velocity.z
             
-        #    imuMsg.linear_acceleration.x = rawMsg.linear_acceleration.x
-        #    imuMsg.linear_acceleration.y = rawMsg.linear_acceleration.y
-        #    imuMsg.linear_acceleration.z = rawMsg.linear_acceleration.z
+            # Publish message
+            imuMsg.linear_acceleration.x = float(words[3])
+            imuMsg.linear_acceleration.y = float(words[4])
+            imuMsg.linear_acceleration.z = float(words[5])
+            
+            imuMsg.angular_velocity.x = float(words[9])
+            imuMsg.angular_velocity.y = float(words[10])
+            imuMsg.angular_velocity.z = float(words[11])
+        except Exception as e:
+            print e
             
         q = tf.transformations.quaternion_from_euler(roll,pitch,yaw)
         imuMsg.orientation.x = q[0]
