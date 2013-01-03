@@ -89,7 +89,7 @@ void output_sensors_text(char raw_or_calibrated)
 
 void output_both_angles_and_sensors_text()
 {
-  Serial.print("#YPR=");
+  Serial.print("#YPRAMG=");
   Serial.print(TO_DEG(yaw)); Serial.print(",");
   Serial.print(TO_DEG(pitch)); Serial.print(",");
   Serial.print(TO_DEG(roll)); Serial.print(",");

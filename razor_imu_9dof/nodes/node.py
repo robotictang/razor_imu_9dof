@@ -67,7 +67,7 @@ ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 roll=0
 pitch=0
 yaw=0
-rospy.sleep(3) # Sleep for 3 second to wait for the board to boot then only write command.
+rospy.sleep(8) # Sleep for 8 seconds to wait for the board to boot then only write command.
 ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text 
 while 1:
     line = ser.readline()
