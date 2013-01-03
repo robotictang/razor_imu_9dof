@@ -1,0 +1,6 @@
+imu_9drazor/Vec3 angular_velocity
+imu_9drazor/Vec3 linear_acceleration
+
+float32 roll
+float32 pitch
+float32 yaw
