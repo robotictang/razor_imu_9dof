@@ -32,19 +32,43 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof
+CMAKE_SOURCE_DIR = /home/paralax2/github/razor_imu_9dof/razor_imu_9dof
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof
+CMAKE_BINARY_DIR = /home/paralax2/github/razor_imu_9dof/razor_imu_9dof
 
 # Utility rule file for ROSBUILD_genmsg_cpp.
 
 # Include the progress variables for this target.
 include CMakeFiles/ROSBUILD_genmsg_cpp.dir/progress.make
 
-CMakeFiles/ROSBUILD_genmsg_cpp:
+CMakeFiles/ROSBUILD_genmsg_cpp: msg_gen/cpp/include/razor_imu_9dof/RazorImu.h
+
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: msg/RazorImu.msg
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/roslib/bin/gendeps
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/roslang/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/roscpp/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/rospy/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/stacks/bullet/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/geometry_msgs/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/sensor_msgs/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/rosconsole/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/stacks/geometry/angles/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/rostest/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/roswtf/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/message_filters/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/stacks/geometry/tf/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/share/std_msgs/manifest.xml
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/stacks/geometry/tf/msg_gen/generated
+msg_gen/cpp/include/razor_imu_9dof/RazorImu.h: /opt/ros/fuerte/stacks/geometry/tf/srv_gen/generated
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/paralax2/github/razor_imu_9dof/razor_imu_9dof/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating msg_gen/cpp/include/razor_imu_9dof/RazorImu.h"
+	/opt/ros/fuerte/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/paralax2/github/razor_imu_9dof/razor_imu_9dof/msg/RazorImu.msg
 
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp
+ROSBUILD_genmsg_cpp: msg_gen/cpp/include/razor_imu_9dof/RazorImu.h
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make
 .PHONY : ROSBUILD_genmsg_cpp
 
@@ -57,6 +81,6 @@ CMakeFiles/ROSBUILD_genmsg_cpp.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/clean
 
 CMakeFiles/ROSBUILD_genmsg_cpp.dir/depend:
-	cd /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof/CMakeFiles/ROSBUILD_genmsg_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/paralax2/github/razor_imu_9dof/razor_imu_9dof && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof/CMakeFiles/ROSBUILD_genmsg_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/depend
 

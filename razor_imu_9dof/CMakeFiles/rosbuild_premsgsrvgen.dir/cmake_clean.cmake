@@ -1,4 +1,7 @@
 FILE(REMOVE_RECURSE
+  "msg_gen"
+  "msg_gen"
+  "src/razor_imu_9dof/msg"
   "CMakeFiles/rosbuild_premsgsrvgen"
 )
 

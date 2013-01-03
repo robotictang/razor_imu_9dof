@@ -1,7 +1,10 @@
 <launch>
 
-  <node pkg="razor_imu_9dof" type="razor_node.py" name="razor_node" output="screen">
+  <node pkg="razor_imu_9dof" type="node.py" name="node" output="screen">
         <param name="device" type="string" value="/dev/ttyUSB1" />
+  </node>
+  
+  <node pkg="razor_imu_9dof" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
   </node>
   
 </launch>

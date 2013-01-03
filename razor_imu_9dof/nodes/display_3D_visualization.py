@@ -37,28 +37,9 @@ import math
 
 from time import time
 from sensor_msgs.msg import Imu
-import tf
+from razor_imu_9dof.msg import RazorImu
 
 grad2rad = 3.141592/180.0
-
-rospy.init_node("driver")
-pub = rospy.Publisher('imu', Imu)
-imuMsg = Imu()
-imuMsg.orientation_covariance = [999999 , 0 , 0,
-0, 9999999, 0,
-0, 0, 999999]
-imuMsg.angular_velocity_covariance = [9999, 0 , 0,
-0 , 99999, 0,
-0 , 0 , 0.02]
-imuMsg.linear_acceleration_covariance = [0.2 , 0 , 0,
-0 , 0.2, 0,
-0 , 0 , 0.2]
-
-
-# Check your COM port and baud rate
-ser = serial.Serial(port='/dev/ttyUSB1',baudrate=57600, timeout=1)
-
-
 
 
 # Main scene
@@ -119,63 +100,36 @@ p_line = box(length=1,height=0.08,width=0.1,color=color.yellow)
 plat_arrow = arrow(color=color.cyan,axis=(1,0,0), shaftwidth=0.06, fixedwidth=1)
 
 
-#f = open("Serial"+str(time())+".txt", 'w')
+rospy.init_node("display_3D_visualization_node")
 
-roll=0
-pitch=0
-yaw=0
-ser.write('#ot' + chr(13))
-while 1:
-    line = ser.readline()
-    line = line.replace("#YPR=","")   # Delete "#YPR="
-    print line
-    #f.write(line)                     # Write to the output log file
-    words = string.split(line,",")    # Fields split
-    if len(words) > 2:
-        try:
-            yaw = float(words[0])*grad2rad
-            pitch = -float(words[1])*grad2rad
-            roll = -float(words[2])*grad2rad
-        except:
-            print "Invalid line"
+def processIMU_message(rawMsg):
+    roll=0
+    pitch=0
+    yaw=0
 
-        axis=(cos(pitch)*cos(yaw),-cos(pitch)*sin(yaw),sin(pitch)) 
-        up=(sin(roll)*sin(yaw)+cos(roll)*sin(pitch)*cos(yaw),sin(roll)*cos(yaw)-cos(roll)*sin(pitch)*sin(yaw),-cos(roll)*cos(pitch))
-        platform.axis=axis
-        platform.up=up
-        platform.length=1.0
-        platform.width=0.65
-        plat_arrow.axis=axis
-        plat_arrow.up=up
-        plat_arrow.length=-0.8
-        p_line.axis=axis
-        p_line.up=up
-        cil_roll.axis=(0.2*cos(roll),0.2*sin(roll),0)
-        cil_roll2.axis=(-0.2*cos(roll),-0.2*sin(roll),0)
-        cil_pitch.axis=(0.2*cos(pitch),0.2*sin(pitch),0)
-        cil_pitch2.axis=(-0.2*cos(pitch),-0.2*sin(pitch),0)
-        arrow_course.axis=(0.2*sin(yaw),0.2*cos(yaw),0)
-        L1.text = words[0]
-        L2.text = words[1]
-        L3.text = words[2]  
-        
-        # Publish message
-        #    imuMsg.angular_velocity.x = rawMsg.angular_velocity.x
-        #    imuMsg.angular_velocity.y = rawMsg.angular_velocity.y
-        #    imuMsg.angular_velocity.z = rawMsg.angular_velocity.z
-            
-        #    imuMsg.linear_acceleration.x = rawMsg.linear_acceleration.x
-        #    imuMsg.linear_acceleration.y = rawMsg.linear_acceleration.y
-        #    imuMsg.linear_acceleration.z = rawMsg.linear_acceleration.z
-            
-        q = tf.transformations.quaternion_from_euler(roll,pitch,yaw)
-        imuMsg.orientation.x = q[0]
-        imuMsg.orientation.y = q[1]
-        imuMsg.orientation.z = q[2]
-        imuMsg.orientation.w = q[3]
-        imuMsg.header.stamp= rospy.Time.now()
-        imuMsg.header.frame_id = 'base_link'
-            
-        pub.publish(imuMsg)
-ser.close
-#f.close
+    roll = rawMsg.roll
+    pitch = rawMsg.pitch
+    yaw = rawMsg.yaw
+    
+    axis=(cos(pitch)*cos(yaw),-cos(pitch)*sin(yaw),sin(pitch)) 
+    up=(sin(roll)*sin(yaw)+cos(roll)*sin(pitch)*cos(yaw),sin(roll)*cos(yaw)-cos(roll)*sin(pitch)*sin(yaw),-cos(roll)*cos(pitch))
+    platform.axis=axis
+    platform.up=up
+    platform.length=1.0
+    platform.width=0.65
+    plat_arrow.axis=axis
+    plat_arrow.up=up
+    plat_arrow.length=-0.8
+    p_line.axis=axis
+    p_line.up=up
+    cil_roll.axis=(0.2*cos(roll),0.2*sin(roll),0)
+    cil_roll2.axis=(-0.2*cos(roll),-0.2*sin(roll),0)
+    cil_pitch.axis=(0.2*cos(pitch),0.2*sin(pitch),0)
+    cil_pitch2.axis=(-0.2*cos(pitch),-0.2*sin(pitch),0)
+    arrow_course.axis=(0.2*sin(yaw),0.2*cos(yaw),0)
+    L1.text = str(roll)
+    L2.text = str(pitch)
+    L3.text = str(yaw)
+
+
+sub = rospy.Subscriber('imuRaw', RazorImu, processIMU_message)

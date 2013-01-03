@@ -36,13 +36,17 @@ import math
 
 from time import time
 from sensor_msgs.msg import Imu
+from razor_imu_9dof.msg import RazorImu
 import tf
 
 grad2rad = 3.141592/180.0
 
-rospy.init_node("driver")
+rospy.init_node("node")
 pub = rospy.Publisher('imu', Imu)
+pubRaw = rospy.Publisher('imuRaw', RazorImu)
+
 imuMsg = Imu()
+imuRawMsg = RazorImu()
 imuMsg.orientation_covariance = [999999 , 0 , 0,
 0, 9999999, 0,
 0, 0, 999999]
@@ -95,6 +99,10 @@ while 1:
         imuMsg.header.stamp= rospy.Time.now()
         imuMsg.header.frame_id = 'base_link'
             
-        pub.publish(imuMsg)
+        # Publish Raw message from Razor board
+        imuRawMsg.yaw = yaw
+        imuRawMsg.pitch = pitch
+        imuRawMsg.roll = roll
+        pubRaw.publish(imuRawMsg)
 ser.close
 #f.close

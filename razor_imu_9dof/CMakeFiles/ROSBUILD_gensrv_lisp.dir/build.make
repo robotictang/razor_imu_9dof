@@ -32,10 +32,10 @@ CMAKE_COMMAND = /usr/bin/cmake
 RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof
+CMAKE_SOURCE_DIR = /home/paralax2/github/razor_imu_9dof/razor_imu_9dof
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof
+CMAKE_BINARY_DIR = /home/paralax2/github/razor_imu_9dof/razor_imu_9dof
 
 # Utility rule file for ROSBUILD_gensrv_lisp.
 
@@ -57,6 +57,6 @@ CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean:
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/clean
 
 CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend:
-	cd /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof /home/paralax2/fuerte_workspace/sandbox/razor_imu_9dof/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/paralax2/github/razor_imu_9dof/razor_imu_9dof && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof /home/paralax2/github/razor_imu_9dof/razor_imu_9dof/CMakeFiles/ROSBUILD_gensrv_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ROSBUILD_gensrv_lisp.dir/depend
 
