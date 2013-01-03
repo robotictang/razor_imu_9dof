@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="razor_imu_9dof" type="driver.py" name="driver" output="screen">
+        <!--<param name="device" type="string" value="/dev/ttyUSB1" />-->
+  </node>
+  
+</launch>
