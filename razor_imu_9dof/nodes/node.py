@@ -98,11 +98,13 @@ while 1:
         imuMsg.orientation.w = q[3]
         imuMsg.header.stamp= rospy.Time.now()
         imuMsg.header.frame_id = 'base_link'
+        pub.publish(imuMsg)
             
         # Publish Raw message from Razor board
         imuRawMsg.yaw = yaw
         imuRawMsg.pitch = pitch
         imuRawMsg.roll = roll
         pubRaw.publish(imuRawMsg)
+        
 ser.close
 #f.close
