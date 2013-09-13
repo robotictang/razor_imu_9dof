@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "msg_gen"
-  "msg_gen"
   "src/razor_imu_9dof/msg"
+  "msg_gen"
   "CMakeFiles/ROSBUILD_genmsg_py"
   "src/razor_imu_9dof/msg/__init__.py"
   "src/razor_imu_9dof/msg/_RazorImu.py"

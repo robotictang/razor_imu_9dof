@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "msg_gen"
-  "msg_gen"
   "src/razor_imu_9dof/msg"
+  "msg_gen"
   "CMakeFiles/rospack_genmsg"
 )
 
