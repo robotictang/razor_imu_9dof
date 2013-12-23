@@ -58,7 +58,7 @@ imuMsg.linear_acceleration_covariance = [0.2 , 0 , 0,
 0 , 0 , 0.2]
 
 default_port='/dev/ttyUSB1'
-port = rospy.get_param('device', default_port)
+port = rospy.get_param('~device', default_port)
 # Check your COM port and baud rate
 ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 
@@ -67,8 +67,12 @@ ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 roll=0
 pitch=0
 yaw=0
-rospy.sleep(5) # Sleep for 8 seconds to wait for the board to boot then only write command.
-ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text 
+rospy.loginfo("Giving the board 5 seconds to boot...")
+rospy.sleep(5) # Sleep for 5 seconds to wait for the board to boot then only write command.
+ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text
+rospy.sleep(0.5) #give serial port some time to process above command
+ser.flushInput()  #discard old input, still in invalid format
+rospy.loginfo("Publishing...")
 while 1:
     line = ser.readline()
     line = line.replace("#YPRAMG=","")   # Delete "#YPR="
