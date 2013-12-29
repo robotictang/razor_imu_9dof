@@ -12,8 +12,10 @@ Install and Configure ROS Package
 
 2) Download code:
 
-	$ git clone https://github.com/robotictang/razor_imu_9dof
-	$ rosmake razor_imu_9dof
+	$ cd ~/catkin_workspace/src
+	$ git clone https://github.com/robotictang/razor_imu_9dof.git
+	$ cd ~/catkin_workspace
+	$ catkin_make
 
 3) Edit launch/razor.launch to use correct USB port:
 

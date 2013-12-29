@@ -1,21 +1,28 @@
 <package>
-  <description brief="razor_imu_9dof">
-
+  <name>razor_imu_9dof</name>
+  <version>1.0.0</version>
+  <description>
      razor_imu_9dof is a package on driver for the razor board and 3D display node.  
      The firmware of the razor board is updated and maintained at
      https://dev.qu.tu-berlin.de/projects/sf-razor-9dof-ahrs/wiki/Tutorial
      This firmware site had solve many issues created by various version of the board hardware.
-     
   </description>
-  <author>Tang Tiong Yew</author>
+  <maintainer email="krirobo@gmail.com">Kristof Robot</maintainer>
   <license>BSD</license>
-  <review status="unreviewed" notes=""/>
+
+  <author>Tang Tiong Yew</author>
+
   <url>http://ros.org/wiki/razor_imu_9dof</url>
 
-  <depend package="roscpp"/>
-  <depend package="rospy"/>
-  <depend package="tf"/>
-  <depend package="std_msgs"/>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>std_msgs</run_depend>
 </package>
 
 
