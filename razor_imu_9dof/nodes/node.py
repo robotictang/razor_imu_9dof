@@ -38,6 +38,7 @@ from time import time
 from sensor_msgs.msg import Imu
 from razor_imu_9dof.msg import RazorImu
 import tf
+from tf.transformations import quaternion_from_euler
 
 grad2rad = 3.141592/180.0
 
@@ -95,7 +96,7 @@ while 1:
         except Exception as e:
             print e
             
-        q = tf.transformations.quaternion_from_euler(roll,pitch,yaw)
+        q = quaternion_from_euler(roll,pitch,yaw)
         imuMsg.orientation.x = q[0]
         imuMsg.orientation.y = q[1]
         imuMsg.orientation.z = q[2]
