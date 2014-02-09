@@ -27,7 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import roslib; roslib.load_manifest('razor_imu_9dof')
+#import roslib; roslib.load_manifest('razor_imu_9dof')
 import rospy
 
 import serial
