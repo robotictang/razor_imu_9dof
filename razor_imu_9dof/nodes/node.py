@@ -61,6 +61,7 @@ imuMsg.linear_acceleration_covariance = [0.2 , 0 , 0,
 default_port='/dev/ttyUSB1'
 port = rospy.get_param('~device', default_port)
 # Check your COM port and baud rate
+rospy.loginfo("Opening %s ...", port)
 ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 
 #f = open("Serial"+str(time())+".txt", 'w')
