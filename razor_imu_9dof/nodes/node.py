@@ -27,7 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import roslib; roslib.load_manifest('razor_imu_9dof')
+#import roslib; roslib.load_manifest('razor_imu_9dof')
 import rospy
 
 import serial
@@ -38,6 +38,7 @@ from time import time
 from sensor_msgs.msg import Imu
 from razor_imu_9dof.msg import RazorImu
 import tf
+from tf.transformations import quaternion_from_euler
 
 grad2rad = 3.141592/180.0
 
@@ -58,8 +59,9 @@ imuMsg.linear_acceleration_covariance = [0.2 , 0 , 0,
 0 , 0 , 0.2]
 
 default_port='/dev/ttyUSB1'
-port = rospy.get_param('device', default_port)
+port = rospy.get_param('~device', default_port)
 # Check your COM port and baud rate
+rospy.loginfo("Opening %s...", port)
 ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 
 #f = open("Serial"+str(time())+".txt", 'w')
@@ -67,11 +69,19 @@ ser = serial.Serial(port=port,baudrate=57600, timeout=1)
 roll=0
 pitch=0
 yaw=0
-rospy.sleep(5) # Sleep for 8 seconds to wait for the board to boot then only write command.
-ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text 
+rospy.loginfo("Giving the board 5 seconds to boot...")
+rospy.sleep(5) # Sleep for 5 seconds to wait for the board to boot then only write command.
+ser.write('#ox' + chr(13)) # To start display angle and sensor reading in text
+#automatic flush - NOT WORKING
+#ser.flushInput()  #discard old input, still in invalid format
+#flush manually, as above command is not working - it breaks the serial connection
+rospy.loginfo("Flushing first 200 entries...")
+for x in range(0, 200):
+    line = ser.readline()
+rospy.loginfo("Publishing...")
 while 1:
     line = ser.readline()
-    line = line.replace("#YPRAMG=","")   # Delete "#YPR="
+    line = line.replace("#YPRAMG=","")   # Delete "#YPRAMG="
     #f.write(line)                     # Write to the output log file
     words = string.split(line,",")    # Fields split
     if len(words) > 2:
@@ -91,7 +101,7 @@ while 1:
         except Exception as e:
             print e
             
-        q = tf.transformations.quaternion_from_euler(roll,pitch,yaw)
+        q = quaternion_from_euler(roll,pitch,yaw)
         imuMsg.orientation.x = q[0]
         imuMsg.orientation.y = q[1]
         imuMsg.orientation.z = q[2]

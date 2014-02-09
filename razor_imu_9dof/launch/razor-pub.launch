@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="razor_imu_9dof" type="node.py" name="node" output="screen">
+        <param name="device" type="string" value="/dev/ttyACM0" />
+  </node>
+  
+</launch>
